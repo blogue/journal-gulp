@@ -7,7 +7,9 @@ $(document).ready(function(){
     var textInput = $("#main-text").val();
     var newEntry = new Entry(textInput);
     $("#journal").append("<p>"+newEntry.mainText+"</p>");
-    console.log("hey");
+    $("#word-count").text(newEntry.wordCount());
+    $("#vowel-count").text(newEntry.vowelCount());
+    $("#consonant-count").text(newEntry.consonantCount());
   });
 
 

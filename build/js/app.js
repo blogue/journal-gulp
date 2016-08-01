@@ -3,9 +3,34 @@ function Entry(mainTextInput) {
   this.mainText = mainTextInput;
 }
 
-Entry.prototype.numberOfWords = function() {
+Entry.prototype.wordCount = function() {
   var words = this.mainText.split(' ');
   return words.length;
+};
+
+Entry.prototype.vowelCount = function() {
+  var entry = this.mainText.split('');
+  var vowels = ['a', 'e', 'i', 'o', 'u'];
+  var count = 0;
+  for(i=0; i < entry.length; i++) {
+    if(vowels.includes(entry[i].toLowerCase())) {
+      count++;
+    }
+  }
+  return count;
+};
+
+Entry.prototype.consonantCount = function() {
+  var consonants = ['b','c','d','f','g','h','j','k','l','m','n','p','q','r','s','t','v','w','x','y','z'];
+  var entry = this.mainText.split('');
+
+  var count = 0;
+  for(i=0; i < entry.length; i++) {
+    if(consonants.includes(entry[i].toLowerCase())) {
+      count++;
+    }
+  }
+  return count;
 };
 
 exports.entryModule = Entry;
@@ -20,7 +45,9 @@ $(document).ready(function(){
     var textInput = $("#main-text").val();
     var newEntry = new Entry(textInput);
     $("#journal").append("<p>"+newEntry.mainText+"</p>");
-    console.log("hey");
+    $("#word-count").text(newEntry.wordCount());
+    $("#vowel-count").text(newEntry.vowelCount());
+    $("#consonant-count").text(newEntry.consonantCount());
   });
 
 
